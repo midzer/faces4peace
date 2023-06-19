@@ -130,9 +130,21 @@ function Utils(errorOutputId) { // eslint-disable-line no-unused-vars
     };
 
     this.startCamera = function(resolution, callback, videoId) {
-        const constraints = {
-            'qvga': {width: {exact: 320}, height: {exact: 240}},
-            'vga': {width: {exact: 640}, height: {exact: 480}}};
+        let constraints;
+        if (window.innerWidth > window.innerHeight) {
+            // Landscape
+            constraints = {
+                'qvga': {width: {exact: 320}, height: {exact: 240}},
+                'vga': {width: {exact: 640}, height: {exact: 480}}
+            };
+        }
+        else {
+            // Portrait
+            constraints = {
+                'qvga': {width: {exact: 240}, height: {exact: 320}},
+                'vga': {width: {exact: 480}, height: {exact: 640}}
+            };
+        }
         let video = document.getElementById(videoId);
         if (!video) {
             video = document.createElement('video');
