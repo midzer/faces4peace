@@ -182,7 +182,7 @@ pushData('https://api.faces4peace.com/upload', 'GET')
 .then((data) => {
     imageCount = data.message;
     samp.textContent = imageCount;
-    for (let i = imageCount - 1; i >= 0; i--) {
+    for (let i = imageCount; i >= 0; i--) {
         const img = document.createElement('img');
         img.id = 'face' + i;
         img.src = 'https://api.faces4peace.com/' + i + '.webp';
