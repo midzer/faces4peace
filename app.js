@@ -147,7 +147,7 @@ function copyLink(event) {
 }
 
 function uploadImage(dataURL) {
-    pushData('http://localhost:61923', 'POST', { source: dataURL })
+    pushData('https://api.faces4peace.com', 'POST', { source: dataURL })
     .then((data) => {
         const faceShare = `<label for="link">Share link</label>
         <input type="text" id="link" name="link" value="https://${window.location.host}/#face${data.message}" readonly>
@@ -178,7 +178,7 @@ async function pushData(url, method, data) {
 }
 
 const facesList = document.getElementById('faces');
-pushData('http://localhost:61923', 'GET')
+pushData('https://api.faces4peace.com', 'GET')
 .then((data) => {
     imageCount = data.message;
     samp.textContent = imageCount;
