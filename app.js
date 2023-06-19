@@ -176,11 +176,26 @@ pushData('https://api.faces4peace.com/upload', 'GET')
 .then((data) => {
     imageCount = data.message;
     samp.textContent = imageCount;
+    const frag = document.createDocumentFragment();
     for (let i = imageCount; i > 0; i--) {
         const img = document.createElement('img');
         img.id = 'face' + i;
         img.src = 'https://api.faces4peace.com/' + i + '.jpeg';
         img.loading = 'lazy';
-        facesList.appendChild(img);
+        frag.appendChild(img);
+    }
+    facesList.appendChild(frag);
+
+    // Jump to image
+    const hash = window.location.hash;
+    if (hash) {
+        const id = window.decodeURIComponent(hash).replace('#', '').toLowerCase();
+        for (let i = 0; i < facesList.childNodes.length; i++) {
+            const img = facesList.childNodes[i];
+            if (img.id === id) {
+                img.scrollIntoView();
+                break;
+            }
+        }
     }
 });
