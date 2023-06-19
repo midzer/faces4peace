@@ -64,6 +64,9 @@ function onVideoStarted() {
                 if (face.width + offset * 2 > video.width) {
                     offset = (video.width - face.width) / 2;
                 }
+                else if (face.height + offset * 2 > video.height) {
+                    offset = (video.height - face.height) / 2;
+                }
                 currentX = face.x - offset;
                 currentY = video.height - face.y - face.height - offset;
                 currentWidth = face.width + offset * 2;
