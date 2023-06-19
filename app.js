@@ -2,7 +2,6 @@ const utils = new Utils('errorMessage');
 
 let streaming = false;
 let video = document.getElementById('videoInput');
-//let startAndStop = document.getElementById('startAndStop');
 let canvasOutput = document.getElementById('canvasOutput');
 let canvasContext = canvasOutput.getContext('2d');
 let currentX, currentY, currentWidth, currentHeight;
@@ -13,8 +12,7 @@ const samp = document.querySelector('article samp');
 
 video.addEventListener('click', () => {
     if (!streaming) {
-        note.textContent = 'Loading...hang on a sec.';
-        //startAndStop.disabled = true;
+        note.textContent = 'Loading...please be patient.';
         utils.clearError();
         utils.startCamera('qvga', onVideoStarted, 'videoInput');
     }
@@ -26,12 +24,8 @@ video.addEventListener('click', () => {
 
 function onVideoStarted() {
     streaming = true;
-    //startAndStop.innerText = 'Detecting your face...';
-    note.textContent = 'Detecting your face...';
-    //videoInput.width = videoInput.videoWidth;
-    //videoInput.height = videoInput.videoHeight;
+    note.textContent = 'Detecting your face...hang on a sec.';
 
-    //let video = document.getElementById('videoInput');
     let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
     let dst = new cv.Mat(video.height, video.width, cv.CV_8UC4);
     let gray = new cv.Mat();
@@ -77,8 +71,7 @@ function onVideoStarted() {
                 //cv.rectangle(dst, point1, point2, [255, 0, 0, 255]);
             }
             if (faces.size() === 1) {
-                note.textContent = 'All good. Take selfie now.';
-                //startAndStop.disabled = false;
+                note.textContent = 'Looking good. Click to take selfie.';
             }
             cv.imshow('canvasOutput', dst);
             
@@ -99,14 +92,12 @@ function onVideoStopped() {
 
     appendImage();
 
-    //startAndStop.innerText = 'Upload';
-    note.textContent = 'Upload me :)';
+    note.textContent = 'Click again to upload your face :)';
 }
 
 utils.loadOpenCv(() => {
     const faceCascadeFile = 'haarcascade_frontalface_default.xml';
     utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
-        //startAndStop.disabled = false;
     });
 });
 
@@ -122,7 +113,7 @@ function appendImage() {
     img.src = dataURL;
     img.onclick = () => {
         img.onclick = null;
-        note.textContent = 'Done! Share your image if you like :)';
+        note.textContent = 'Done! Now, you can share your image if you like :)';
         samp.textContent = imageCount + 1;
         prependImage(dataURL);
         uploadImage(dataURL);
