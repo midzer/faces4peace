@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faces4Peace</title>
+  <!-- Primary Meta Tags -->
+  <meta name="description" content="My face for world peace.">
+  <link rel="stylesheet" href="app.css">
+  <link rel="icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ctext y='.9em' font-size='90'%3e☮️%3c/text%3e%3c/svg%3e">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://faces4peace.com">
+  <meta property="og:title" content="Faces4Peace">
+  <meta property="og:description" content="My face for world peace.">
+  <meta property="og:image" content="https://faces4peace.com/android-chrome-512x512.png">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="https://faces4peace.com">
+  <meta property="twitter:title" content="Faces4Peace">
+  <meta property="twitter:description" content="My face for world peace.">
+  <meta property="twitter:image" content="https://faces4peace.com/android-chrome-512x512.png">
+  <script defer src="utils.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Faces4Peace ☮️</a>
+      <ul>
+        <li><a href="#faces">Faces</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://github.com/midzer/faces4peace/" rel="nofollow noopener" target="_blank">GitHub ↗</a></li>
+      </ul>
+    </nav>
+    <h1><u>My</u> face for world peace</h1>
+    <p><b>No signup</b>, <b>no tracking</b>, <b>no ads</b>, just <em>a tiny selfie</em> to show your support for ending war.</p>
+  </header>
+  <noscript>Sorry, this App needs JavaScript enabled to run properly.</noscript>
+  <main>
+    <p class="err" id="errorMessage"></p>
+    <article>
+      <aside>
+        <p id="note">Click the cute icon below ↓ to initialize your camera.</p>
+      </aside>
+    </article>
+    <!--<section id="up" class="fade show">
+      <button id="startAndStop" disabled>Start</button>
+    </section>-->
+    <section>
+      <aside id="share" hidden>
+      </aside>
+      <aside id="preview">
+        <video id="videoInput" width="320" height="240" poster="camera-selfie.svg"></video>
+      </aside>
+      <aside hidden>
+        <canvas id="canvasOutput" width="320" height="240"></canvas>
+      </aside>
+    </section>
+    <article>
+      <p><samp>0</samp> faces uploaded</p>
+      <div id="faces"></div>
+    </article>
+    <article id="faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>What is this crap about?</summary>
+        <p>Dunno, just a small art project.</p>
+      </details>
+    </article>
+    <section>
+      <blockquote>
+        "War! What is it good for?"
+        <footer>
+          <i>- Edwin Starr, Singer</i>
+        </footer>
+      </blockquote>
+      <blockquote>
+        "All Faces Are Beautiful"
+        <footer>
+          <i>- Unknown author, Human</i>
+        </footer>
+      </blockquote>
+    </section>
+  </main>
+  <footer>
+    <hr>
+    <p>Made by <a href="https://rohner.io" rel="nofollow noopener" target="_blank">Rohner Solutions ↗</a><br></p>
+  </footer>
+</body>
+</html>
