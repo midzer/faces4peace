@@ -193,6 +193,7 @@ pushData('https://api.faces4peace.com/upload', 'GET')
         for (let i = 0; i < facesList.childNodes.length; i++) {
             const img = facesList.childNodes[i];
             if (img.id === id) {
+                img.classList.add('highlight');
                 img.scrollIntoView();
                 break;
             }
