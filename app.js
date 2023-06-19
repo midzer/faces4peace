@@ -111,7 +111,7 @@ function appendImage() {
     newCanvas.height = 100;
     const newContext = newCanvas.getContext('2d');
     newContext.drawImage(canvas, currentX, currentY, currentWidth, currentHeight, 0, 0, 100, 100);
-    dataURL = newCanvas.toDataURL('image/jpg');
+    dataURL = newCanvas.toDataURL('image/jpeg');
     const img = document.createElement('img');
     img.src = dataURL;
     img.onclick = () => {
@@ -179,7 +179,7 @@ pushData('https://api.faces4peace.com/upload', 'GET')
     for (let i = imageCount; i > 0; i--) {
         const img = document.createElement('img');
         img.id = 'face' + i;
-        img.src = 'https://api.faces4peace.com/' + i + '.jpg';
+        img.src = 'https://api.faces4peace.com/' + i + '.jpeg';
         img.loading = 'lazy';
         facesList.appendChild(img);
     }
