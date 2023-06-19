@@ -95,7 +95,7 @@ function onVideoStopped() {
 
     appendImage();
 
-    note.textContent = 'Click again to upload your face :)';
+    note.textContent = 'Click again to upload your face.';
 }
 
 utils.loadOpenCv(() => {
@@ -116,7 +116,7 @@ function appendImage() {
     img.src = dataURL;
     img.onclick = () => {
         img.onclick = null;
-        note.textContent = 'Done! Now, you can share your image if you like :)';
+        note.textContent = 'Done! You can share your image if you like :)';
         samp.textContent = imageCount + 1;
         prependImage(dataURL);
         uploadImage(dataURL);
