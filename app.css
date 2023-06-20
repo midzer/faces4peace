@@ -25,7 +25,7 @@
     --width-content: 1080px;
 }
 
-/*@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     :root {
         --color-accent: #cf53114f;
         --color-bg: #0c0c1c;
@@ -38,7 +38,11 @@
         --color-text: #fff;
         --color-text-secondary: #999;
     }
-}*/
+
+    #videoInput {
+        background-color: var(--color-bg-secondary);
+    }
+}
 
 /* Layout */
 article aside {
