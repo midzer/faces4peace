@@ -522,6 +522,7 @@ canvas, video {
 
 #faces {
     display: flex;
+    flex-wrap: wrap;
     gap: 2px;
 }
 
