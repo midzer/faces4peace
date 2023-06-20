@@ -122,7 +122,7 @@ function appendImage() {
     previewImage.src = dataURL;
     previewImage.onclick = () => {
         previewImage.onclick = null;
-        note.textContent = 'Done! You can share your image if you like :)';
+        note.textContent = 'Done! Share the love if you like :)';
         samp.textContent = imageCount + 1;
         prependImage(dataURL);
         uploadImage(dataURL);
