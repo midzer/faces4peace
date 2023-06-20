@@ -4,12 +4,12 @@
     --active-brightness: 0.85;
     --border-radius: 5px;
     --box-shadow: 2px 2px 10px;
-    --color-accent: #cf431115;
-    --color-bg: #f7feda;
+    --color-accent: #e21b3515;
+    --color-bg: #f3ffdf;
     --color-bg-secondary: #e9e9e9;
-    --color-link: #cf4311;
-    --color-secondary: #008820;
-    --color-secondary-accent: #0088200b;
+    --color-link: #e21b35;
+    --color-secondary: #6f5eff;
+    --color-secondary-accent: #6f5eff0b;
     --color-shadow: #f4f4f4;
     --color-table: #424242;
     --color-text: #000;
@@ -27,12 +27,12 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --color-accent: #cf53114f;
-        --color-bg: #0c0c1c;
+        --color-accent: #e21b354f;
+        --color-bg: #020f06;
         --color-bg-secondary: #555;
-        --color-link: #cf5311;
-        --color-secondary: #008820;
-        --color-secondary-accent: #0088204f;
+        --color-link: #e21b35;
+        --color-secondary: #6f5eff;
+        --color-secondary-accent: #6f5eff4f;
         --color-shadow: #bbbbbb20;
         --color-table: #dfdfdf;
         --color-text: #fff;
