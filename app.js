@@ -1,14 +1,16 @@
 const utils = new Utils('errorMessage');
 
-let streaming = false;
-let video = document.getElementById('videoInput');
-let canvasOutput = document.getElementById('canvasOutput');
-let canvasContext = canvasOutput.getContext('2d');
-let currentX, currentY, currentWidth, currentHeight;
-let imageCount;
-
+const video = document.getElementById('videoInput');
+const canvasOutput = document.getElementById('canvasOutput');
+const canvasContext = canvasOutput.getContext('2d');
+const previewImage = document.querySelector('#preview img')
 const note = document.getElementById('note');
 const samp = document.querySelector('article samp');
+
+let streaming;
+let currentX, currentY, currentWidth, currentHeight;
+let imageCount;
+let faceDetected;
 
 video.addEventListener('click', () => {
     if (!streaming) {
@@ -16,7 +18,7 @@ video.addEventListener('click', () => {
         utils.clearError();
         utils.startCamera('qvga', onVideoStarted, 'videoInput');
     }
-    else {
+    else if (faceDetected) {
         utils.stopCamera();
         onVideoStopped();
     }
@@ -24,7 +26,6 @@ video.addEventListener('click', () => {
 
 function onVideoStarted() {
     streaming = true;
-    note.textContent = 'Detecting your face...hang on a sec.';
 
     let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
     let dst = new cv.Mat(video.height, video.width, cv.CV_8UC4);
@@ -48,6 +49,8 @@ function onVideoStarted() {
                 classifier.delete();
                 return;
             }
+            note.textContent = 'Detecting your face...hang on a sec.';
+            faceDetected = false;
             let begin = Date.now();
             // start processing.
             cap.read(src);
@@ -75,6 +78,7 @@ function onVideoStarted() {
             }
             if (faces.size() === 1) {
                 note.textContent = 'Looking good. Click to take selfie.';
+                faceDetected = true;
             }
             cv.imshow('canvasOutput', dst);
             
@@ -95,7 +99,15 @@ function onVideoStopped() {
 
     appendImage();
 
-    note.textContent = 'Click again to upload your face.';
+    note.innerHTML = 'Click picture again to upload ↥ your face or <button id="retry-btn">Retry ↶</button>.';
+    document.querySelector('#note > button').onclick = () => {
+        faceDetected = false;
+        requestAnimationFrame(() => {
+            previewImage.hidden = true;
+            video.hidden = false;
+        });
+        video.click();
+    };
 }
 
 utils.loadOpenCv(() => {
@@ -112,18 +124,17 @@ function appendImage() {
     const newContext = newCanvas.getContext('2d');
     newContext.drawImage(canvas, currentX, currentY, currentWidth, currentHeight, 0, 0, 100, 100);
     dataURL = newCanvas.toDataURL('image/jpeg');
-    const img = document.createElement('img');
-    img.src = dataURL;
-    img.onclick = () => {
-        img.onclick = null;
+    previewImage.src = dataURL;
+    previewImage.onclick = () => {
+        previewImage.onclick = null;
         note.textContent = 'Done! You can share your image if you like :)';
         samp.textContent = imageCount + 1;
         prependImage(dataURL);
         uploadImage(dataURL);
     }
     requestAnimationFrame(() => {
-        video.parentNode.removeChild(video);
-        document.getElementById('preview').appendChild(img);
+        video.hidden = true;
+        previewImage.hidden = false;
     });
 }
 
