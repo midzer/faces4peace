@@ -526,6 +526,11 @@ canvas, video {
     gap: 2px;
 }
 
+#faces > img {
+    width: 100px;
+    height: auto;
+}
+
 .highlight {
     border: 2px solid red;
     margin: -2px;
