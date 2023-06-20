@@ -6,6 +6,7 @@ const canvasContext = canvasOutput.getContext('2d');
 const previewImage = document.querySelector('#preview img')
 const note = document.getElementById('note');
 const samp = document.querySelector('article samp');
+const retryBtn = document.getElementById('retry-btn');
 
 let streaming;
 let currentX, currentY, currentWidth, currentHeight;
@@ -99,15 +100,9 @@ function onVideoStopped() {
 
     appendImage();
 
-    note.innerHTML = 'Click picture again to upload ↥ your face or <button id="retry-btn">Retry ↶</button>.';
-    document.querySelector('#note > button').onclick = () => {
-        faceDetected = false;
-        requestAnimationFrame(() => {
-            previewImage.hidden = true;
-            video.hidden = false;
-        });
-        video.click();
-    };
+    note.innerHTML = 'Click picture again to upload ↥ your face.';
+
+    retryBtn.hidden = false;
 }
 
 utils.loadOpenCv(() => {
@@ -211,3 +206,13 @@ pushData('https://api.faces4peace.com/upload', 'GET')
         }
     }
 });
+
+retryBtn.onclick = function () {
+    this.hidden = true;
+    faceDetected = false;
+    requestAnimationFrame(() => {
+        previewImage.hidden = true;
+        video.hidden = false;
+    });
+    video.click();
+};
