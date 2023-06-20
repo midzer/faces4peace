@@ -177,19 +177,23 @@ async function pushData(url, method, data) {
     return response.json();
 }
 
+function createFaceImg (frag, i) {
+    const img = document.createElement('img');
+    img.alt = i === 0 ? 'Give Peace A Chance' : 'Anonymously uploaded face #' + i;
+    img.id = 'face' + i;
+    img.src = 'https://api.faces4peace.com/' + i + (i === 0 ? '.svg' : '.jpeg');
+    img.loading = 'lazy';
+    frag.appendChild(img);
+}
+
 const facesList = document.getElementById('faces');
 pushData('https://api.faces4peace.com/upload', 'GET')
 .then((data) => {
     imageCount = data.message;
-    samp.textContent = imageCount;
+    samp.textContent = imageCount - 1;
     const frag = document.createDocumentFragment();
-    for (let i = imageCount; i > 0; i--) {
-        const img = document.createElement('img');
-        img.alt = 'Anonymously uploaded face #' + i;
-        img.id = 'face' + i;
-        img.src = 'https://api.faces4peace.com/' + i + '.jpeg';
-        img.loading = 'lazy';
-        frag.appendChild(img);
+    for (let i = imageCount - 1; i >= 0; i--) {
+        createFaceImg(frag, i);
     }
     facesList.appendChild(frag);
 
