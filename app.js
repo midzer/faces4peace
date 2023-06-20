@@ -185,6 +185,7 @@ pushData('https://api.faces4peace.com/upload', 'GET')
     const frag = document.createDocumentFragment();
     for (let i = imageCount; i > 0; i--) {
         const img = document.createElement('img');
+        img.alt = 'Anonymously uploaded face #' + i;
         img.id = 'face' + i;
         img.src = 'https://api.faces4peace.com/' + i + '.jpeg';
         img.loading = 'lazy';
