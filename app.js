@@ -182,6 +182,8 @@ function createFaceImg (frag, i) {
     img.alt = i === 0 ? 'Give Peace A Chance' : 'Anonymously uploaded face #' + i;
     img.id = 'face' + i;
     img.src = 'https://api.faces4peace.com/' + i + (i === 0 ? '.svg' : '.jpeg');
+    img.width = '100';
+    img.height = '100';
     img.loading = 'lazy';
     frag.appendChild(img);
 }
