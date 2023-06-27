@@ -134,14 +134,14 @@ function Utils(errorOutputId) { // eslint-disable-line no-unused-vars
         if (window.innerWidth > window.innerHeight) {
             // Landscape
             constraints = {
-                'qvga': {width: {exact: 320}, height: {exact: 240}},
+                'qvga': {width: {min: 160, ideal: 320}, height: {min: 120, ideal: 240}},
                 'vga': {width: {exact: 640}, height: {exact: 480}}
             };
         }
         else {
             // Portrait
             constraints = {
-                'qvga': {width: {exact: 240}, height: {exact: 320}},
+                'qvga': {width: {min: 120, ideal: 240}, height: {min: 160, ideal: 320}},
                 'vga': {width: {exact: 480}, height: {exact: 640}}
             };
         }
