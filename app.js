@@ -85,7 +85,7 @@ function onVideoStarted() {
                 //cv.rectangle(dst, point1, point2, [255, 0, 0, 255]);
             }
             if (faces.size() === 1) {
-                note.textContent = 'Looking good. Click to take selfie.';
+                note.textContent = 'Looking good. Click on picture to take selfie.';
                 faceDetected = true;
             }
             cv.imshow('canvasOutput', dst);
