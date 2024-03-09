@@ -1,5 +1,3 @@
-const utils = new Utils('errorMessage');
-
 const video = document.getElementById('videoInput');
 const canvasOutput = document.getElementById('canvasOutput');
 const canvasContext = canvasOutput.getContext('2d');
@@ -12,8 +10,17 @@ let streaming;
 let currentX, currentY, currentWidth, currentHeight;
 let imageCount;
 let faceDetected;
+let utils;
 
 video.addEventListener('click', () => {
+    if (!utils) {
+        utils = new Utils('errorMessage');
+        utils.loadOpenCv(() => {
+            const faceCascadeFile = 'haarcascade_frontalface_default.xml';
+            utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
+            });
+        });
+    }
     if (!streaming) {
         note.textContent = 'Loading...please be patient.';
         utils.clearError();
@@ -104,12 +111,6 @@ function onVideoStopped() {
 
     retryBtn.hidden = false;
 }
-
-utils.loadOpenCv(() => {
-    const faceCascadeFile = 'haarcascade_frontalface_default.xml';
-    utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
-    });
-});
 
 function appendImage() {
     const canvas = document.getElementById('canvasOutput');
