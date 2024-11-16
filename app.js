@@ -151,7 +151,7 @@ function uploadImage(dataURL) {
     pushData('https://api.faces4peace.com/upload', 'POST', { source: dataURL })
     .then((data) => {
         const faceShare = `<label for="link">Share link</label>
-        <input type="text" id="link" name="link" value="https://${window.location.host}/#face${data.message}" readonly>
+        <input type="text" id="link" name="link" value="https://${window.location.host}/#face${parseInt(data.message) - 1}" readonly>
         <button id="copy-btn">Copy</button>`;
         const element = document.getElementById('share');
         element.insertAdjacentHTML('afterBegin', faceShare);
